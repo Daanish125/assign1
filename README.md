@@ -1,25 +1,28 @@
-# Worker Progress Report System
+# Medical & Travel Expense Request System
 
 ![WCB Manitoba Logo](public/images/WCB_of_Manitoba_logo.svg.png)
 
-A web application for workers to submit progress reports to the Workers Compensation Board of Manitoba, built with Node.js, Express, and Pug templates.
+A web application for workers to submit medical and travel expense reimbursement requests to the Workers Compensation Board of Manitoba.
 
 ## Features
 
-- **Multi-page form** with 3 distinct sections:
-  - Work status and return-to-work information
-  - Medical treatment and recovery progress
-  - Certification and privacy acknowledgement
-- **Print-friendly design** with proper page breaks
-- **Dynamic data binding** with sample datasets
-- **Responsive layout** that works on desktop and mobile
-- **Interactive navigation** (browser view)
-- **Professional styling** with WCB branding
+- **Comprehensive expense tracking** for:
+  - Prescription drugs
+  - Over-the-counter medications
+  - Medical supplies
+  - Parking expenses
+  - Mileage reimbursement
+  - Bus/Taxi fares
+- **Dynamic table generation** for each expense category
+- **Print-optimized layout** with proper page breaks
+- **Data toggling** between sample datasets
+- **Responsive design** that works on desktop and mobile
+- **Form validation** for required fields
 
 ## Technologies Used
 
 - **Backend**: Node.js with Express
-- **Templating**: Pug (formerly Jade)
+- **Templating**: Pug (Jade)
 - **Frontend**: HTML5, CSS3, JavaScript
 - **Build**: npm
 
@@ -27,10 +30,10 @@ A web application for workers to submit progress reports to the Workers Compensa
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/worker-progress-report.git
-   cd worker-progress-report
+   git clone https://github.com/yourusername/medical-expense-request.git
+   cd medical-expense-request
 
-   npm install
+   npm install express pug
 
    public/images/WCB_of_Manitoba_logo.svg.png
 
@@ -38,15 +41,14 @@ A web application for workers to submit progress reports to the Workers Compensa
 
    http://localhost:3000
 
-   worker-progress-report/
-├── public/               # Static assets
-│   └── images/           # Logo and images
-├── views/                # Pug templates
-│   └── worker-progress-report.pug  # Main template
-├── server.js             # Express application
-├── package.json          # Project dependencies
-└── README.md             # This file
+  2.Project Structure:
 
-
-
-   
+  medical-expense-request/
+├── public/
+│   └── images/
+│       └── WCB_of_Manitoba_logo.svg.png
+├── views/
+│   └── expense-request.pug
+├── server.js
+├── package.json
+└── README.md

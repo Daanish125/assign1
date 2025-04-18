@@ -1,0 +1,280 @@
+//- Mixins for reusable components
+mixin sectionTitle(title)
+  p.section-title= title
+
+mixin drugTable(drugs, isPrescription)
+  table(style="margin-left: 20px; border: 2px solid black; width: auto;")
+    thead
+      tr
+        th(style="width: auto;") Drug Name
+        th(style="width: auto;") Prescription Date
+        th(style="width: auto;") Date Purchased
+        th(style="width: auto;") Healthcare Provider Name
+        th(style="width: auto;") Paid Amount
+    tbody
+      each drug in drugs
+        tr
+          td.data-cell= drug.name
+          td.data-cell= drug.prescriptionDate
+          td.data-cell= drug.purchaseDate
+          td.data-cell= drug.providerName
+          td.data-cell= '$' + drug.amount.toFixed(2)
+
+mixin otcDrugTable(drugs)
+  table(style="margin-left: 20px; border: 2px solid black; width: auto;")
+    thead
+      tr
+        th(style="width: auto;") Drug Name
+        th(style="width: auto;") Date Purchased
+        th(style="width: auto;") Paid Amount
+        th(style="width: auto;") Seller's Name
+        th(style="width: auto;") Reason for Purchasing
+    tbody
+      each drug in drugs
+        tr
+          td.data-cell= drug.name
+          td.data-cell= drug.purchaseDate
+          td.data-cell= '$' + drug.amount.toFixed(2)
+          td.data-cell= drug.sellerName
+          td.data-cell= drug.reason
+
+mixin medicalSuppliesTable(supplies)
+  table(style="margin-left: 20px; border: 2px solid black; width: auto; font-weight: normal;")
+    thead
+      tr
+        th(style="width: auto;") Item Purchased
+        th(style="width: auto;") Date Purchased
+        th(style="width: auto;") Was This Prescribed?
+        th(style="width: auto;") Healthcare Provider Name
+        th(style="width: auto;") Paid Amount
+        th(style="width: auto;") Seller's Name
+    tbody
+      each item in supplies
+        tr
+          td.data-cell= item.name
+          td.data-cell= item.purchaseDate
+          td.data-cell= item.prescribed ? 'Yes' : 'No'
+          td.data-cell= item.providerName
+          td.data-cell= '$' + item.amount.toFixed(2)
+          td.data-cell= item.sellerName
+
+mixin parkingTable(parking)
+  table(style="margin-left: 20px; border: 2px solid black; width: auto;")
+    thead
+      tr
+        th(style="width: auto;") Address of Healthcare Provider/Medical Facility
+        th(style="width: auto;") Date
+        th(style="width: auto;") Paid Amount
+        th(style="width: auto;") Meter Used?
+        th(style="width: auto;") Meter Number
+    tbody
+      each expense in parking
+        tr
+          td.data-cell= expense.providerAddress
+          td.data-cell= expense.date
+          td.data-cell= '$' + expense.amount.toFixed(2)
+          td.data-cell= expense.meterUsed ? 'Yes' : 'No'
+          td.data-cell= expense.meterNumber || 'N/A'
+
+mixin mileageTable(mileage)
+  table(style="margin-left: 20px; border: 2px solid black; width: auto;")
+    thead
+      tr
+        th(style="width: auto;") Appointment Date
+        th(style="width: auto;") Address of Healthcare Provider/Medical Facility
+        th(style="width: auto;") Address of Workplace
+        th(style="width: auto;") Number of KM (Round Trip)
+    tbody
+      each trip in mileage
+        tr
+          td.data-cell= trip.date
+          td.data-cell= trip.providerAddress
+          td.data-cell= trip.workplaceAddress
+          td.data-cell= trip.km.toFixed(1) + ' km'
+
+mixin busTaxiTable(expenses)
+  table(style="margin-left: 20px; border: 2px solid black; width: auto;")
+    thead
+      tr
+        th(style="width: auto;") Appointment Date
+        th(style="width: auto;") Address of Starting Point
+        th(style="width: auto;") Address of Healthcare Provider/Medical Facility
+        th(style="width: auto;") Bus or Taxi (Indicate One)
+        th(style="width: auto;") Total Fare Paid
+    tbody
+      each expense in expenses
+        tr
+          td.data-cell= expense.date
+          td.data-cell= expense.startingAddress
+          td.data-cell= expense.providerAddress
+          td.data-cell= expense.transportType
+          td.data-cell= '$' + expense.amount.toFixed(2)
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Medical & Travel Expense Request
+    style.
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #f4f4f4;
+        border-bottom: 1px solid #ccc;
+      }
+      .logo {
+        flex: 1;
+      }
+      
+      .contact-info {
+        flex: 2;
+        text-align: left;
+        font-size: 13px;
+        font-weight: normal;
+        font-family: Arial;
+      }
+      .right-section {
+        flex: 1;
+        text-align: right;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 5px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+      .data-cell {
+        color: rgb(28, 54, 127);
+        font-size: 12px;
+      }
+      .section-title {
+        margin-left: 20px;
+        font-weight: bold;
+      }
+      .section-description {
+        margin-left: 20px;
+      }
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: white;
+        border-top: 1px solid white;
+        font-size: 12px;
+        margin-top:700px;
+      }
+      .page-break {
+        page-break-after: always;
+      }
+      @media print {
+        body {
+          padding: 0;
+          margin: 0;
+        }
+        .no-print {
+          display: none;
+        }
+        .footer {
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+        }
+      }
+  body
+    header
+      .logo
+        img(src="WCB_of_Manitoba_logo.svg.png", alt="Logo",style="max-height:50px")
+        
+      .contact-info
+        | 333 Broadway
+        br
+        | Winnipeg, MB R3C 4W3
+        br
+        | Phone: (204) 954-4321
+        br
+        | Toll Free: 1-855-954-4321
+        br
+        a(href="https://wcb.mb.ca", target="_blank") wcb.mb.ca
+      .right-section
+        | Medical & Travel Expense
+        p(style="text-align:center;") Request
+
+    form
+      p.section-description
+        span(style="color:blue") #{claimantName} 
+        | requested reimbursement for the following medical and/or travel expenses:
+
+      +sectionTitle("Prescription Drugs")
+      +drugTable(prescriptionDrugs, true)
+
+      +sectionTitle("Over-the-Counter Drugs")
+      +otcDrugTable(otcDrugs)
+
+      +sectionTitle("Bandages, Braces or Other Medical Supplies")
+      +medicalSuppliesTable(medicalSupplies)
+
+      +sectionTitle("Parking for Medical Appointments")
+      +parkingTable(parkingExpenses)
+
+      +sectionTitle("Mileage to Medical Appointments")
+      p.section-description The WCB will generally reimburse only those transportation costs which are in excess of costs that would be incurred by the worker while travelling to and from work.
+      +mileageTable(mileageExpenses)
+    
+    // Footer with 60px spacing between elements
+div(style="margin-left: 20px; margin-top: 20px; font-size: 12px; display: flex; gap: 60px;")
+  span Worker App ID: #{workerAppId}
+  span(style="margin-left: auto") Submitted: #{submissionDate}
+
+
+//- Black divider line (optional)
+div(style="background-color: black; height: 10px; margin-top: 10px;")
+
+    div(style="background-color: black; height: 10px; margin-top: 10px;")
+    div(style="height: 40px;")
+      .page-break
+      +sectionTitle("Bus or Taxi Fare for Medical Appointments*")
+      p.section-description *Note: Pre-approval is required from your WCB representative to claim taxi fare(s).
+      +busTaxiTable(busTaxiExpenses)
+
+      hr(style="border: 1px solid grey; margin-left: 20px; margin-right: 20px; margin-top: 10px;")
+      
+      .section-description(style="display: flex; align-items: center;")
+        input(type="checkbox", id="privacy_notice", name="privacy_notice", required, style="box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); width: 20px; height: 20px; cursor: pointer;")
+        label(for="privacy_notice", style="margin-left:5px;margin-top:5px; font-size: 14px;") I understand that the 
+          u
+            span(style="color:blue") Privacy Notice
+          |  applies to the personal information collected in this document.
+
+    footer.footer
+      div Worker App ID: #{workerAppId}
+      div(style="text-align: right; line-height: 2px;")
+        | Submitted: #{submissionDate}
+        p page 2 of 2
+
+    
+
+    .no-print(style="position: fixed; bottom: 20px; right: 20px;")
+      button(onclick="toggleData()") Toggle Data Set
+
+    script.
+      function toggleData() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentDataSet = urlParams.get('dataset') || '1';
+        const newDataSet = currentDataSet === '1' ? '2' : '1';
+        window.location.search = 'dataset=' + newDataSet;
+      }

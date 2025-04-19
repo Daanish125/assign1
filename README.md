@@ -1,3 +1,7 @@
+HERE IS THE VIDEO LINK: https://www.loom.com/share/240f1c5e035e40e39fe57cd9b7643ec6?sid=3ef43ea6-cfbb-4d8d-8816-0def8c26f259
+
+
+
 # Medical & Travel Expense Request System
 
 ![WCB Manitoba Logo](public/images/WCB_of_Manitoba_logo.svg.png)
